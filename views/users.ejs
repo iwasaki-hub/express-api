@@ -7,18 +7,28 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="header">
-        <h1><%= message %></h1>
+    <!-- header -->
+    <header class="header">
+      <div class="header-inner">
+        <a href="/" class="logo-wrapper">
+          <img src="/images/logo.png" alt="Express Logo" class="logo" />
+          <span class="app-title">Express App</span>
+        </a>
       </div>
-      <p>Express + EJS sample page.</p>
+    </header>
+
+    <!-- main -->
+    <main class="container">
+      <p class="message"><%= message %></p>
       <a href="/" class="button">Home</a>
       <ul>
         <% users.forEach(user => { %>
         <li><%= user %></li>
         <% }) %>
       </ul>
-      <div class="footer">© 2026 Express App</div>
-    </div>
+    </main>
+
+    <!-- footer -->
+    <footer class="footer">© 2026 Express App</footer>
   </body>
 </html>
