@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
+    <!-- Confetti from bottom -->
+    <div class="confetti">
+      <% for (let i = 0; i < 150; i++) { %>
+      <span class="confetti-piece"></span>
+      <% } %>
+    </div>
+
     <!-- header -->
     <header class="header">
       <div class="header-inner">
@@ -26,5 +33,26 @@
 
     <!-- footer -->
     <footer class="footer">© 2026 Express App</footer>
+
+    <script>
+      const pieces = document.querySelectorAll(".confetti-piece");
+
+      pieces.forEach((piece) => {
+        // 横方向に広がる
+        const x = (Math.random() - 0.5) * window.innerWidth;
+        // 上方向に噴き出す
+        const y = -(Math.random() * 600 + 300);
+
+        piece.style.setProperty("--x", `${x}px`);
+        piece.style.setProperty("--y", `${y}px`);
+        piece.style.backgroundColor = `hsl(${Math.random() * 360}, 80%, 60%)`;
+        piece.style.animationDelay = Math.random() * 0.4 + "s";
+      });
+
+      // 数秒後に削除
+      setTimeout(() => {
+        document.querySelector(".confetti")?.remove();
+      }, 4000);
+    </script>
   </body>
 </html>
