@@ -136,10 +136,15 @@ a:hover {
    Footer (optional)
 ========================= */
 .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   margin-top: 40px;
-  padding-top: 16px;
+  padding: 16px 0;
   font-size: 14px;
-  color: #222121;
+  background: #161927;
+  color: white;
   border-top: 1px solid #e5e7eb;
   text-align: center;
 }
