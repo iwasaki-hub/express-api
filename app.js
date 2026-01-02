@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const path = require("path");
+const morgan = require("morgan");
 
 // view engine
 app.set("views", path.join(__dirname, "views"));
@@ -12,10 +13,10 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(morgan("dev"));
 
 // routes
 app.get("/", (req, res) => {
-  console.log(req.headers);
   res.render("index", {
     title: "Home",
     message: "Hello Express + EJS 👋",
