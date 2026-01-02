@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
 app.get("/users", (req, res) => {
   res.render("users", {
     title: "Users List",
-    message: "Hello Express + EJS 👋",
+    message: "Users List Page 📒",
     users: ["Mario", "Luigi", "Peach"],
   });
 });

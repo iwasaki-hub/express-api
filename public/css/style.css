@@ -66,6 +66,7 @@ ul {
 li {
   padding: 12px 16px;
   margin-bottom: 8px;
+  font-weight: bold;
   background-color: #f0f3f7;
   border-radius: 6px;
 }
