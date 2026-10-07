@@ -1,0 +1,421 @@
+/* =========================
+   User Detail Page
+========================= */
+
+.user-detail-page {
+  position: relative;
+
+  min-height: 100vh;
+  padding: 28px 20px 80px;
+
+  overflow: hidden;
+
+  background: #f8f5ed;
+}
+
+.user-detail-container {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* =========================
+   Decorative Background
+========================= */
+
+.user-detail-page::before {
+  content: "";
+
+  position: absolute;
+
+  top: -120px;
+  right: -100px;
+
+  width: 300px;
+  height: 300px;
+
+  background: #f6c95f;
+
+  border-radius: 50%;
+
+  opacity: 0.85;
+}
+
+.user-detail-page::after {
+  content: "";
+
+  position: absolute;
+
+  bottom: -100px;
+  left: -100px;
+
+  width: 260px;
+  height: 260px;
+
+  background: #e3f4ed;
+
+  border-radius: 50%;
+}
+
+/* =========================
+   Back Link
+========================= */
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 22px;
+  padding: 10px 15px;
+
+  color: #24211d;
+  background: #ffffff;
+
+  border: 2px solid #24211d;
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  text-decoration: none;
+
+  box-shadow: 3px 3px 0 #24211d;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.back-link:hover {
+  transform: translate(-2px, -2px);
+
+  box-shadow: 5px 5px 0 #24211d;
+}
+
+.back-link:active {
+  transform: translate(1px, 1px);
+
+  box-shadow: 2px 2px 0 #24211d;
+}
+
+/* =========================
+   Detail Card
+========================= */
+
+.user-detail-card {
+  position: relative;
+
+  padding: 42px;
+
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 2px solid #24211d;
+  border-radius: 32px;
+
+  box-shadow: 8px 8px 0 #24211d;
+}
+
+/* Decorative circle inside card */
+
+.user-detail-card::after {
+  content: "";
+
+  position: absolute;
+
+  right: -70px;
+  bottom: -80px;
+
+  width: 220px;
+  height: 220px;
+
+  background: #e8f1ff;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+/* =========================
+   Profile Header
+========================= */
+
+.user-detail-avatar {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100px;
+  height: 100px;
+
+  margin-bottom: 26px;
+
+  color: #ffffff;
+  background: #ef6c4d;
+
+  border: 2px solid #24211d;
+  border-radius: 50%;
+
+  font-size: 38px;
+  font-weight: 800;
+
+  box-shadow: 5px 5px 0 #24211d;
+
+  transform: rotate(-5deg);
+}
+
+.user-detail-label {
+  position: relative;
+  z-index: 2;
+
+  display: inline-block;
+
+  margin: 0 0 10px;
+  padding: 6px 10px;
+
+  color: #ffffff;
+  background: #24211d;
+
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+
+.user-detail-card h1 {
+  position: relative;
+  z-index: 2;
+
+  max-width: 600px;
+
+  margin: 0;
+
+  color: #24211d;
+
+  font-size: clamp(42px, 7vw, 64px);
+  font-weight: 800;
+  line-height: 0.98;
+
+  letter-spacing: -0.055em;
+
+  word-break: break-word;
+}
+
+.user-detail-email {
+  position: relative;
+  z-index: 2;
+
+  margin: 15px 0 0;
+
+  color: #716a61;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* =========================
+   User Information
+========================= */
+
+.user-detail-info {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+
+  margin-top: 42px;
+  padding-top: 28px;
+
+  border-top: 2px solid rgba(36, 33, 29, 0.12);
+}
+
+.user-detail-info > div {
+  min-width: 0;
+
+  padding: 20px;
+
+  background: #f8f5ed;
+
+  border: 1px solid rgba(36, 33, 29, 0.12);
+  border-radius: 18px;
+}
+
+.user-detail-info span {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #8a8379;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.user-detail-info p {
+  overflow: hidden;
+
+  margin: 0;
+
+  color: #24211d;
+
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.55;
+
+  word-break: break-all;
+}
+
+/* =========================
+   Loading
+========================= */
+
+.user-detail-page > p {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 60vh;
+
+  margin: 0;
+
+  color: #716a61;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* =========================
+   Error
+========================= */
+
+.user-detail-page > h2 {
+  position: relative;
+  z-index: 2;
+
+  max-width: 500px;
+
+  margin: 120px auto 10px;
+
+  color: #24211d;
+
+  font-size: 25px;
+  font-weight: 800;
+
+  text-align: center;
+}
+
+.user-detail-page > p + a {
+  position: relative;
+  z-index: 2;
+
+  display: block;
+
+  width: fit-content;
+
+  margin: 20px auto;
+
+  color: #24211d;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  text-decoration: underline;
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+  .user-detail-page {
+    padding: 20px 16px 56px;
+  }
+
+  .user-detail-page::before {
+    top: -80px;
+    right: -100px;
+
+    width: 220px;
+    height: 220px;
+  }
+
+  .user-detail-page::after {
+    bottom: -80px;
+    left: -90px;
+
+    width: 190px;
+    height: 190px;
+  }
+
+  .back-link {
+    margin-bottom: 18px;
+    padding: 9px 13px;
+
+    font-size: 11px;
+  }
+
+  .user-detail-card {
+    padding: 30px 22px;
+
+    border-radius: 27px;
+
+    box-shadow: 6px 6px 0 #24211d;
+  }
+
+  .user-detail-avatar {
+    width: 82px;
+    height: 82px;
+
+    margin-bottom: 22px;
+
+    font-size: 31px;
+
+    box-shadow: 4px 4px 0 #24211d;
+  }
+
+  .user-detail-label {
+    font-size: 8px;
+  }
+
+  .user-detail-card h1 {
+    font-size: 44px;
+  }
+
+  .user-detail-email {
+    margin-top: 13px;
+
+    font-size: 13px;
+  }
+
+  .user-detail-info {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+
+    margin-top: 34px;
+    padding-top: 22px;
+  }
+
+  .user-detail-info > div {
+    padding: 17px;
+
+    border-radius: 15px;
+  }
+}

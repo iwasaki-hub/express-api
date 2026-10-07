@@ -1,0 +1,42 @@
+/* =========================
+   App
+========================= */
+
+.app {
+  min-height: 100vh;
+
+  background: #f8f5ed;
+  color: #24211d;
+}
+
+.app-main {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app-page {
+  width: 100%;
+}
+
+/* =========================
+   Selection
+========================= */
+
+::selection {
+  color: #24211d;
+  background: #f6c95f;
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+  .app {
+    min-height: 100dvh;
+  }
+
+  .app-main {
+    min-height: 100dvh;
+  }
+}

@@ -1,0 +1,640 @@
+/* =========================
+   Users Page
+========================= */
+
+.users-page {
+  min-height: 100vh;
+  padding: 32px 20px 80px;
+
+  background: #f8f5ed;
+}
+
+.users-container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* =========================
+   Header
+========================= */
+
+.users-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 32px;
+  margin-bottom: 42px;
+}
+
+.users-eyebrow {
+  display: inline-block;
+
+  margin: 0 0 14px;
+  padding: 7px 12px;
+
+  color: #ffffff;
+  background: #ef6c4d;
+
+  border-radius: 999px;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.users-header h1 {
+  max-width: 620px;
+
+  margin: 0;
+
+  color: #24211d;
+
+  font-size: clamp(42px, 6vw, 68px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.users-description {
+  max-width: 500px;
+
+  margin: 18px 0 0;
+
+  color: #777269;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* =========================
+   Users Count
+========================= */
+
+.users-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 104px;
+  height: 104px;
+
+  color: #24211d;
+  background: #f6c95f;
+
+  border-radius: 50%;
+
+  transform: rotate(4deg);
+}
+
+.users-count span {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.users-count small {
+  margin-top: 7px;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+/* =========================
+   Users Grid
+========================= */
+
+.users-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+/* =========================
+   User Card
+========================= */
+
+.user-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 270px;
+  padding: 28px;
+
+  overflow: hidden;
+
+  color: #24211d;
+  text-decoration: none;
+
+  background: #ffffff;
+
+  border: 2px solid #24211d;
+  border-radius: 28px;
+
+  box-shadow: 6px 6px 0 #24211d;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translate(-3px, -3px);
+
+  box-shadow: 9px 9px 0 #24211d;
+}
+
+.user-card:active {
+  transform: translate(2px, 2px);
+
+  box-shadow: 3px 3px 0 #24211d;
+}
+
+/* =========================
+   Decorative Shape
+========================= */
+
+.user-card::after {
+  content: "";
+
+  position: absolute;
+
+  right: -42px;
+  bottom: -48px;
+
+  width: 145px;
+  height: 145px;
+
+  background: #e8f1ff;
+
+  border-radius: 50%;
+
+  transition: transform 0.3s ease;
+}
+
+.user-card:hover::after {
+  transform: scale(1.15) rotate(8deg);
+}
+
+/* Different card colors */
+
+.user-card:nth-child(2n) {
+  background: #f2e7ff;
+}
+
+.user-card:nth-child(3n) {
+  background: #e3f4ed;
+}
+
+.user-card:nth-child(4n) {
+  background: #fff0d7;
+}
+
+.user-card:nth-child(2n)::after {
+  background: #f6c95f;
+}
+
+.user-card:nth-child(3n)::after {
+  background: #ef6c4d;
+}
+
+.user-card:nth-child(4n)::after {
+  background: #8db9f4;
+}
+
+/* =========================
+   Card Top
+========================= */
+
+.user-card-top {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: auto;
+}
+
+/* =========================
+   Avatar
+========================= */
+
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 68px;
+  height: 68px;
+
+  color: #ffffff;
+  background: #ef6c4d;
+
+  border: 2px solid #24211d;
+  border-radius: 50%;
+
+  font-size: 25px;
+  font-weight: 800;
+
+  transform: rotate(-5deg);
+}
+
+.user-card:nth-child(2n) .user-avatar {
+  background: #7c64d8;
+}
+
+.user-card:nth-child(3n) .user-avatar {
+  background: #3c9b76;
+}
+
+.user-card:nth-child(4n) .user-avatar {
+  background: #e59b35;
+}
+
+/* =========================
+   Status
+========================= */
+
+.user-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 7px 11px;
+
+  color: #24211d;
+  background: rgba(255, 255, 255, 0.72);
+
+  border: 1px solid rgba(36, 33, 29, 0.18);
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #4caf70;
+}
+
+/* =========================
+   User Info
+========================= */
+
+.user-info {
+  position: relative;
+  z-index: 2;
+
+  min-width: 0;
+
+  margin-top: 32px;
+}
+
+.user-info h2 {
+  overflow: hidden;
+
+  margin: 0 0 5px;
+
+  color: #24211d;
+
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.user-info p {
+  overflow: hidden;
+
+  margin: 0;
+
+  color: #686158;
+
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* =========================
+   Card Footer
+========================= */
+
+.user-card-footer {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 25px;
+  padding-top: 15px;
+
+  color: #5e574f;
+
+  font-size: 12px;
+
+  border-top: 1px solid rgba(36, 33, 29, 0.14);
+}
+
+.user-label {
+  color: #24211d;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+/* =========================
+   Loading
+========================= */
+
+.users-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 60vh;
+
+  color: #686158;
+}
+
+.loading-spinner {
+  width: 42px;
+  height: 42px;
+
+  margin-bottom: 18px;
+
+  border: 4px solid #e7dfd2;
+  border-top-color: #ef6c4d;
+
+  border-radius: 50%;
+
+  animation: users-spin 0.8s linear infinite;
+}
+
+.users-loading p {
+  margin: 0;
+
+  font-size: 14px;
+  font-weight: 600;
+}
+
+@keyframes users-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================
+   Error
+========================= */
+
+.users-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 60vh;
+
+  text-align: center;
+}
+
+.error-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 60px;
+  height: 60px;
+
+  margin-bottom: 18px;
+
+  color: #ffffff;
+  background: #ef6c4d;
+
+  border: 2px solid #24211d;
+  border-radius: 50%;
+
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.users-error h2 {
+  margin: 0 0 8px;
+
+  color: #24211d;
+
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.users-error p {
+  margin: 0;
+
+  color: #777269;
+
+  font-size: 14px;
+}
+
+/* =========================
+   Empty
+========================= */
+
+.users-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 400px;
+  padding: 40px;
+
+  text-align: center;
+
+  background: #f6c95f;
+
+  border: 2px solid #24211d;
+  border-radius: 30px;
+
+  box-shadow: 7px 7px 0 #24211d;
+}
+
+.empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 78px;
+  height: 78px;
+
+  margin-bottom: 20px;
+
+  font-size: 34px;
+
+  background: #ffffff;
+
+  border: 2px solid #24211d;
+  border-radius: 50%;
+
+  transform: rotate(-5deg);
+}
+
+.users-empty h2 {
+  margin: 0 0 9px;
+
+  color: #24211d;
+
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.users-empty p {
+  margin: 0;
+
+  color: #5e574f;
+
+  font-size: 14px;
+}
+
+/* =========================
+   Tablet
+========================= */
+
+@media (max-width: 800px) {
+  .users-page {
+    padding: 28px 20px 60px;
+  }
+
+  .users-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .users-count {
+    width: 86px;
+    height: 86px;
+  }
+
+  .users-count span {
+    font-size: 25px;
+  }
+
+  .users-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+  .users-page {
+    padding: 20px 16px 48px;
+  }
+
+  .users-header {
+    gap: 22px;
+
+    margin-bottom: 32px;
+  }
+
+  .users-eyebrow {
+    margin-bottom: 12px;
+  }
+
+  .users-header h1 {
+    font-size: 47px;
+    line-height: 0.98;
+  }
+
+  .users-description {
+    margin-top: 16px;
+
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .users-count {
+    align-self: flex-end;
+
+    width: 78px;
+    height: 78px;
+  }
+
+  .users-count span {
+    font-size: 23px;
+  }
+
+  .users-count small {
+    font-size: 8px;
+  }
+
+  .users-grid {
+    gap: 16px;
+  }
+
+  .user-card {
+    min-height: 250px;
+
+    padding: 23px;
+
+    border-radius: 25px;
+
+    box-shadow: 5px 5px 0 #24211d;
+  }
+
+  .user-card:hover {
+    transform: translate(-2px, -2px);
+
+    box-shadow: 7px 7px 0 #24211d;
+  }
+
+  .user-avatar {
+    width: 60px;
+    height: 60px;
+
+    font-size: 22px;
+  }
+
+  .user-info {
+    margin-top: 28px;
+  }
+
+  .user-info h2 {
+    font-size: 25px;
+  }
+
+  .user-info p {
+    font-size: 12px;
+  }
+
+  .user-card-footer {
+    margin-top: 22px;
+  }
+}
