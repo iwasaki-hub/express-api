@@ -40,7 +40,7 @@ function UserDetail() {
         <h2>ユーザー情報を取得できませんでした</h2>
         <p>{error}</p>
 
-        <Link to="/users">← ユーザー一覧へ戻る</Link>
+        <Link to="/">← ユーザー一覧へ戻る</Link>
       </div>
     );
   }
