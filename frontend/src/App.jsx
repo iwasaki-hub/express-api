@@ -3,6 +3,7 @@ import Users from "./pages/Users";
 import UserDetail from "./pages/UserDetail";
 
 import "./App.css";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
