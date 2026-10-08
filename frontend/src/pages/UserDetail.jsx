@@ -48,7 +48,7 @@ function UserDetail() {
   return (
     <div className="user-detail-page">
       <div className="user-detail-container">
-        <Link to="/" className="back-link">
+        <Link to="/users" className="back-link">
           ← ユーザー一覧へ戻る
         </Link>
 
