@@ -1,3 +1,7 @@
+/* ========================================
+   Navbar
+======================================== */
+
 .navbar {
   position: relative;
   z-index: 100;
@@ -7,6 +11,10 @@
 
   background: #f8f5ed;
 }
+
+/* ========================================
+   Navbar Inner
+======================================== */
 
 .navbar-inner {
   display: flex;
@@ -27,14 +35,16 @@
   box-shadow: 5px 5px 0 #24211d;
 }
 
-/* =========================
+/* ========================================
    Logo
-========================= */
+======================================== */
 
 .navbar-logo {
   display: flex;
   align-items: center;
   gap: 8px;
+
+  flex-shrink: 0;
 
   color: #24211d;
   text-decoration: none;
@@ -71,9 +81,9 @@
   letter-spacing: -0.04em;
 }
 
-/* =========================
+/* ========================================
    Main Navigation
-========================= */
+======================================== */
 
 .navbar-links {
   display: flex;
@@ -123,14 +133,16 @@
   line-height: 1;
 }
 
-/* =========================
+/* ========================================
    Authentication
-========================= */
+======================================== */
 
 .navbar-auth {
   display: flex;
   align-items: center;
   gap: 8px;
+
+  flex-shrink: 0;
 }
 
 .navbar-login,
@@ -156,6 +168,8 @@
     background 0.2s ease;
 }
 
+/* Login */
+
 .navbar-login {
   color: #24211d;
   background: #ffffff;
@@ -165,8 +179,11 @@
 
 .navbar-login:hover {
   background: #f8f5ed;
+
   transform: translateY(-2px);
 }
+
+/* Register */
 
 .navbar-register {
   color: #ffffff;
@@ -183,9 +200,9 @@
   box-shadow: 4px 4px 0 #24211d;
 }
 
-/* =========================
+/* ========================================
    Hamburger Button
-========================= */
+======================================== */
 
 .navbar-menu-button {
   display: none;
@@ -195,12 +212,14 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
   gap: 5px;
 
   width: 42px;
   height: 42px;
 
   padding: 0;
+  margin-left: auto;
 
   background: #f6c95f;
 
@@ -233,7 +252,9 @@
     opacity 0.2s ease;
 }
 
-/* Hamburger → X */
+/* ========================================
+   Hamburger → X
+======================================== */
 
 .navbar-menu-button.is-open span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
@@ -247,17 +268,216 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* =========================
+/* ========================================
    Mobile Menu
-========================= */
+   初期状態
+======================================== */
 
 .navbar-mobile-menu {
-  display: none;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 1080px;
+
+  margin: 0 auto;
+  padding: 0;
+
+  background: #ffffff;
+
+  border: 0 solid #24211d;
+  border-radius: 24px;
+
+  box-shadow: none;
+
+  /*
+    閉じているときは高さをなくす。
+    これによってNavbar下に余白が発生しない。
+  */
+  max-height: 0;
+
+  overflow: hidden;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform: translateY(-8px);
+
+  transition:
+    max-height 0.3s ease,
+    margin-top 0.3s ease,
+    padding 0.3s ease,
+    opacity 0.2s ease,
+    transform 0.3s ease,
+    border-width 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-/* =========================
+/* ========================================
+   Mobile Menu
+   Open
+======================================== */
+
+.navbar-mobile-menu.is-open {
+  max-height: 500px;
+
+  margin-top: 12px;
+  padding: 14px;
+
+  border-width: 2px;
+
+  box-shadow: 4px 4px 0 #24211d;
+
+  opacity: 1;
+  visibility: visible;
+
+  transform: translateY(0);
+}
+
+/* ========================================
+   Mobile Menu Links
+======================================== */
+
+.navbar-mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  width: 100%;
+
+  padding: 15px 16px;
+
+  color: #24211d;
+
+  border-radius: 16px;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.navbar-mobile-link:hover {
+  background: #f8f5ed;
+}
+
+.navbar-mobile-link.active {
+  background: #f6c95f;
+}
+
+.navbar-mobile-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  font-size: 17px;
+}
+
+/* ========================================
+   Mobile Divider
+======================================== */
+
+.navbar-mobile-divider {
+  width: 100%;
+  height: 2px;
+
+  margin: 10px 0;
+
+  background: #24211d;
+}
+
+/* ========================================
+   Mobile Authentication
+======================================== */
+
+.navbar-mobile-auth {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  padding: 4px 0;
+}
+
+.navbar-mobile-login,
+.navbar-mobile-register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+/* Mobile Login */
+
+.navbar-mobile-login {
+  color: #24211d;
+  background: #ffffff;
+
+  border: 2px solid #24211d;
+}
+
+/* Mobile Register */
+
+.navbar-mobile-register {
+  color: #ffffff;
+  background: #7c64d8;
+
+  border: 2px solid #24211d;
+
+  box-shadow: 3px 3px 0 #24211d;
+}
+
+/* ========================================
+   Tablet
+======================================== */
+
+@media (max-width: 900px) {
+  .navbar-inner {
+    padding-left: 14px;
+    padding-right: 10px;
+  }
+
+  .navbar-links {
+    gap: 2px;
+  }
+
+  .navbar-link {
+    padding-left: 11px;
+    padding-right: 11px;
+  }
+
+  .navbar-auth {
+    gap: 6px;
+  }
+
+  .navbar-login,
+  .navbar-register {
+    padding-left: 11px;
+    padding-right: 11px;
+
+    font-size: 10px;
+  }
+}
+
+/* ========================================
    Mobile
-========================= */
+======================================== */
 
 @media (max-width: 760px) {
   .navbar {
@@ -291,163 +511,54 @@
     display: none;
   }
 
-  /* Hide Desktop Navigation */
+  /* Desktop Navigationを非表示 */
 
   .navbar-links,
   .navbar-auth {
     display: none;
   }
 
-  /* Hamburger */
+  /* Hamburgerを表示 */
 
   .navbar-menu-button {
     display: flex;
-
-    margin-left: auto;
   }
 
   /* Mobile Menu */
 
   .navbar-mobile-menu {
     display: flex;
-    flex-direction: column;
-
-    width: 100%;
-    max-width: 1080px;
-
-    margin: 12px auto 0;
-    padding: 14px;
-
-    background: #ffffff;
-
-    border: 2px solid #24211d;
-    border-radius: 24px;
-
-    box-shadow: 4px 4px 0 #24211d;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transform: translateY(-10px);
-
-    transition:
-      opacity 0.2s ease,
-      transform 0.2s ease,
-      visibility 0.2s ease;
-  }
-
-  .navbar-mobile-menu.is-open {
-    opacity: 1;
-    visibility: visible;
-
-    transform: translateY(0);
   }
 
   /* Mobile Links */
 
   .navbar-mobile-link {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    width: 100%;
-
     padding: 15px 16px;
 
-    color: #24211d;
-
-    border-radius: 16px;
-
     font-size: 14px;
-    font-weight: 800;
-
-    text-decoration: none;
-
-    transition:
-      background 0.2s ease,
-      transform 0.2s ease;
-  }
-
-  .navbar-mobile-link:hover {
-    background: #f8f5ed;
-  }
-
-  .navbar-mobile-link.active {
-    background: #f6c95f;
-  }
-
-  .navbar-mobile-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 30px;
-    height: 30px;
-
-    font-size: 17px;
-  }
-
-  /* Divider */
-
-  .navbar-mobile-divider {
-    width: 100%;
-    height: 2px;
-
-    margin: 10px 0;
-
-    background: #24211d;
   }
 
   /* Mobile Authentication */
 
   .navbar-mobile-auth {
-    display: grid;
-
     grid-template-columns: 1fr 1fr;
 
     gap: 10px;
-
-    padding: 4px 0;
   }
 
   .navbar-mobile-login,
   .navbar-mobile-register {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     min-height: 46px;
 
-    border-radius: 999px;
-
     font-size: 12px;
-    font-weight: 800;
-
-    text-decoration: none;
-  }
-
-  .navbar-mobile-login {
-    color: #24211d;
-    background: #ffffff;
-
-    border: 2px solid #24211d;
-  }
-
-  .navbar-mobile-register {
-    color: #ffffff;
-    background: #7c64d8;
-
-    border: 2px solid #24211d;
-
-    box-shadow: 3px 3px 0 #24211d;
   }
 }
 
-/* =========================
+/* ========================================
    Small Mobile
-========================= */
+======================================== */
 
-@media (max-width: 400px) {
+@media (max-width: 520px) {
   .navbar {
     padding-left: 8px;
     padding-right: 8px;
@@ -455,11 +566,13 @@
 
   .navbar-inner {
     padding-left: 8px;
-    padding-right: 8px;
+    padding-right: 7px;
   }
 
-  .navbar-mobile-menu {
-    padding: 10px;
+  .navbar-mobile-menu.is-open {
+    padding: 12px;
+
+    border-radius: 20px;
   }
 
   .navbar-mobile-link {
@@ -468,8 +581,11 @@
     font-size: 13px;
   }
 
-  .navbar-mobile-auth {
-    gap: 8px;
+  .navbar-mobile-icon {
+    width: 28px;
+    height: 28px;
+
+    font-size: 16px;
   }
 
   .navbar-mobile-login,
@@ -477,5 +593,51 @@
     min-height: 42px;
 
     font-size: 11px;
+  }
+}
+
+/* ========================================
+   Very Small Mobile
+======================================== */
+
+@media (max-width: 400px) {
+  .navbar {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+
+  .navbar-inner {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .navbar-menu-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navbar-menu-button span {
+    width: 16px;
+  }
+
+  .navbar-mobile-menu.is-open {
+    padding: 10px;
+  }
+
+  .navbar-mobile-link {
+    padding: 12px;
+
+    font-size: 12px;
+  }
+
+  .navbar-mobile-auth {
+    gap: 8px;
+  }
+
+  .navbar-mobile-login,
+  .navbar-mobile-register {
+    min-height: 40px;
+
+    font-size: 10px;
   }
 }
