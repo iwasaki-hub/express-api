@@ -10,7 +10,7 @@ function Navbar() {
 
   const navigate = useNavigate();
 
-  const { user, loading, logout } = useAuth();
+  const { user, logout } = useAuth();
 
   const handleLogout = async () => {
     await logout();
@@ -27,11 +27,13 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
+        {/* Logo */}
         <NavLink to="/" className="navbar-logo" onClick={closeMenu}>
           <span className="navbar-logo-mark">✦</span>
           <span className="navbar-logo-text">bokki</span>
         </NavLink>
 
+        {/* Desktop Navigation */}
         <div className="navbar-links">
           <NavLink
             to="/"
@@ -65,34 +67,34 @@ function Navbar() {
           </NavLink>
         </div>
 
-        {!loading && (
-          <div className="navbar-auth">
-            {user ? (
-              <>
-                <span className="navbar-user-name">{user.name}さん</span>
+        {/* Desktop Authentication */}
+        <div className="navbar-auth">
+          {user ? (
+            <>
+              <span className="navbar-user-name">{user.name}さん</span>
 
-                <button
-                  type="button"
-                  className="navbar-login"
-                  onClick={handleLogout}
-                >
-                  ログアウト
-                </button>
-              </>
-            ) : (
-              <>
-                <NavLink to="/login" className="navbar-login">
-                  ログイン
-                </NavLink>
+              <button
+                type="button"
+                className="navbar-login"
+                onClick={handleLogout}
+              >
+                ログアウト
+              </button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login" className="navbar-login">
+                ログイン
+              </NavLink>
 
-                <NavLink to="/register" className="navbar-register">
-                  サインイン
-                </NavLink>
-              </>
-            )}
-          </div>
-        )}
+              <NavLink to="/register" className="navbar-register">
+                サインイン
+              </NavLink>
+            </>
+          )}
+        </div>
 
+        {/* Mobile Menu Button */}
         <button
           type="button"
           className={`navbar-menu-button ${isMenuOpen ? "is-open" : ""}`}
@@ -106,6 +108,7 @@ function Navbar() {
         </button>
       </div>
 
+      {/* Mobile Menu */}
       <div className={`navbar-mobile-menu ${isMenuOpen ? "is-open" : ""}`}>
         <NavLink to="/" end className="navbar-mobile-link" onClick={closeMenu}>
           <span className="navbar-mobile-icon">⌂</span>
@@ -124,41 +127,39 @@ function Navbar() {
 
         <div className="navbar-mobile-divider"></div>
 
-        {!loading && (
-          <>
-            {user ? (
-              <div className="navbar-mobile-auth">
-                <p className="navbar-mobile-user">{user.name}さん</p>
+        <div className="navbar-mobile-auth">
+          {user ? (
+            <>
+              <p className="navbar-mobile-user">{user.name}さん</p>
 
-                <button
-                  type="button"
-                  className="navbar-mobile-login"
-                  onClick={handleLogout}
-                >
-                  ログアウト
-                </button>
-              </div>
-            ) : (
-              <div className="navbar-mobile-auth">
-                <NavLink
-                  to="/login"
-                  className="navbar-mobile-login"
-                  onClick={closeMenu}
-                >
-                  ログイン
-                </NavLink>
+              <button
+                type="button"
+                className="navbar-mobile-login"
+                onClick={handleLogout}
+              >
+                ログアウト
+              </button>
+            </>
+          ) : (
+            <>
+              <NavLink
+                to="/login"
+                className="navbar-mobile-login"
+                onClick={closeMenu}
+              >
+                ログイン
+              </NavLink>
 
-                <NavLink
-                  to="/register"
-                  className="navbar-mobile-register"
-                  onClick={closeMenu}
-                >
-                  サインイン
-                </NavLink>
-              </div>
-            )}
-          </>
-        )}
+              <NavLink
+                to="/register"
+                className="navbar-mobile-register"
+                onClick={closeMenu}
+              >
+                サインイン
+              </NavLink>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );
