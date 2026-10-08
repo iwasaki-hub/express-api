@@ -8,7 +8,7 @@ import "./Login.css";
 function Login() {
   const navigate = useNavigate();
 
-  const { refreshUser } = useAuth();
+  const { loginUser } = useAuth();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -58,8 +58,9 @@ function Login() {
         throw new Error(data.message || "ログインに失敗しました");
       }
 
-      // ログイン後に現在のユーザー情報を取得
-      await refreshUser();
+      // ログインAPIから返ってきたユーザー情報を
+      // AuthContextへ即座に反映
+      loginUser(data.user);
 
       // ホームへ移動
       navigate("/");

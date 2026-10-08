@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+
 import { getMe, logout as logoutApi } from "../api/authApi";
 
 const AuthContext = createContext(null);
@@ -23,12 +24,18 @@ export const AuthProvider = ({ children }) => {
     fetchUser();
   }, []);
 
+  // ログイン成功時にユーザー情報を即座にセット
+  const loginUser = (userData) => {
+    setUser(userData);
+  };
+
   const logout = async () => {
     try {
       await logoutApi();
+
       setUser(null);
     } catch (error) {
-      console.error(error);
+      console.error("Logout error:", error);
     }
   };
 
@@ -37,6 +44,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         loading,
+        loginUser,
         logout,
         refreshUser: fetchUser,
       }}
