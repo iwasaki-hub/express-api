@@ -56,6 +56,7 @@
 
 .register-badge span {
   color: #f6c95f;
+
   font-size: 13px;
 }
 
@@ -167,6 +168,7 @@
 .register-field {
   display: flex;
   flex-direction: column;
+
   gap: 8px;
 }
 
@@ -191,8 +193,22 @@
 
   outline: none;
 
-  font-size: 14px;
+  /*
+   * iOS Safariなどでは、
+   * 16px未満のinputにフォーカスすると
+   * 自動的に画面がズームされることがあります。
+   *
+   * そのため、inputは常に16pxを使用します。
+   */
+  font-size: 16px;
   font-weight: 600;
+
+  /*
+   * Safariの標準inputスタイルを抑えて
+   * デザインを安定させます。
+   */
+  -webkit-appearance: none;
+  appearance: none;
 
   transition:
     background 0.2s ease,
@@ -202,6 +218,11 @@
 
 .register-field input::placeholder {
   color: #aaa49b;
+
+  /*
+   * placeholderも16pxを維持します。
+   */
+  font-size: 16px;
 }
 
 .register-field input:focus {
@@ -334,6 +355,7 @@
 
 .register-submit:disabled {
   opacity: 0.6;
+
   cursor: not-allowed;
 }
 
@@ -390,6 +412,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 18px;
 
   margin-top: 55px;
@@ -578,10 +601,21 @@
     gap: 17px;
   }
 
+  /*
+   * モバイルでも16pxを維持します。
+   *
+   * これにより、iOS Safariなどで
+   * inputフォーカス時に発生する
+   * 自動ズームを防ぎます。
+   */
   .register-field input {
     height: 52px;
 
-    font-size: 14px;
+    font-size: 16px;
+  }
+
+  .register-field input::placeholder {
+    font-size: 16px;
   }
 
   .register-submit {
@@ -594,11 +628,26 @@
     margin-top: 40px;
   }
 
-  .register-decoration-yellow {
-    display: none;
-  }
-
+  .register-decoration-yellow,
   .register-decoration-purple {
     display: none;
+  }
+}
+
+/* ========================================
+   Small Mobile
+======================================== */
+
+@media (max-width: 380px) {
+  /*
+   * 小さいスマートフォンでも
+   * inputの文字サイズは16pxを維持します。
+   */
+  .register-field input {
+    font-size: 16px;
+  }
+
+  .register-field input::placeholder {
+    font-size: 16px;
   }
 }
