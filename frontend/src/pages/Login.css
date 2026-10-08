@@ -193,8 +193,23 @@
 
   outline: none;
 
-  font-size: 14px;
+  /*
+   * iOS Safariなどでは、
+   * 16px未満のinputにフォーカスすると
+   * 自動的に画面がズームされることがあります。
+   *
+   * モバイルでも16pxを維持することで
+   * ログイン時の意図しないズームを防ぎます。
+   */
+  font-size: 16px;
   font-weight: 600;
+
+  /*
+   * Safariの標準inputスタイルを抑えて
+   * デザインを安定させる
+   */
+  -webkit-appearance: none;
+  appearance: none;
 
   transition:
     background 0.2s ease,
@@ -204,6 +219,11 @@
 
 .login-field input::placeholder {
   color: #aaa49b;
+
+  /*
+   * placeholderも16pxを維持
+   */
+  font-size: 16px;
 }
 
 .login-field input:focus {
@@ -573,10 +593,20 @@
     gap: 17px;
   }
 
+  /*
+   * ここが今回の重要ポイントです。
+   *
+   * 元の14pxから16pxへ変更。
+   * iOS Safariなどによる自動ズームを防ぎます。
+   */
   .login-field input {
     height: 52px;
 
-    font-size: 14px;
+    font-size: 16px;
+  }
+
+  .login-field input::placeholder {
+    font-size: 16px;
   }
 
   .login-submit {
@@ -592,5 +622,22 @@
   .login-decoration-yellow,
   .login-decoration-coral {
     display: none;
+  }
+}
+
+/* ========================================
+   Small Mobile
+======================================== */
+
+@media (max-width: 380px) {
+  /*
+   * 小さいスマートフォンでも16pxを維持。
+   */
+  .login-field input {
+    font-size: 16px;
+  }
+
+  .login-field input::placeholder {
+    font-size: 16px;
   }
 }
