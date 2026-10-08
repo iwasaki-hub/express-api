@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+import { useAuth } from "../context/AuthContext";
+
 import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
+
+  const { refreshUser } = useAuth();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -53,6 +58,10 @@ function Login() {
         throw new Error(data.message || "ログインに失敗しました");
       }
 
+      // ログイン後に現在のユーザー情報を取得
+      await refreshUser();
+
+      // ホームへ移動
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -98,6 +107,7 @@ function Login() {
 
             <div>
               <p className="login-card-label">WELCOME BACK</p>
+
               <h2>ログイン</h2>
             </div>
           </div>
