@@ -1,33 +1,22 @@
-/* =========================
-   Navbar
-========================= */
-
 .navbar {
   position: relative;
   z-index: 100;
-
   width: 100%;
   padding: 18px 20px 0;
-
   background: #f8f5ed;
 }
 
 .navbar-inner {
   display: flex;
   align-items: center;
-
   width: 100%;
   max-width: 1080px;
   height: 68px;
-
   margin: 0 auto;
   padding: 0 10px 0 18px;
-
   background: #ffffff;
-
   border: 2px solid #24211d;
   border-radius: 999px;
-
   box-shadow: 5px 5px 0 #24211d;
 }
 
@@ -39,7 +28,6 @@
   display: flex;
   align-items: center;
   gap: 8px;
-
   color: #24211d;
   text-decoration: none;
 }
@@ -48,18 +36,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 38px;
   height: 38px;
-
   color: #ffffff;
   background: #ef6c4d;
-
   border: 2px solid #24211d;
   border-radius: 50%;
-
   font-size: 17px;
-
   transform: rotate(-8deg);
 }
 
@@ -70,14 +53,13 @@
 }
 
 /* =========================
-   Navigation
+   Main Navigation
 ========================= */
 
 .navbar-links {
   display: flex;
   align-items: center;
   gap: 5px;
-
   margin: 0 auto;
 }
 
@@ -85,17 +67,12 @@
   display: flex;
   align-items: center;
   gap: 7px;
-
   padding: 9px 15px;
-
   color: #777269;
   background: transparent;
-
   border-radius: 999px;
-
   font-size: 12px;
   font-weight: 800;
-
   text-decoration: none;
 
   transition:
@@ -120,55 +97,70 @@
 }
 
 /* =========================
-   Profile
+   Authentication
 ========================= */
 
-.navbar-profile {
+.navbar-auth {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar-login,
+.navbar-register {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  width: 42px;
-  height: 42px;
-
-  flex-shrink: 0;
-
-  color: #ffffff;
-  background: #7c64d8;
-
-  border: 2px solid #24211d;
-  border-radius: 50%;
-
-  font-size: 13px;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-size: 11px;
   font-weight: 800;
-
-  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
 
   transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
-.navbar-profile:hover {
-  transform: rotate(5deg) scale(1.05);
+.navbar-login {
+  color: #24211d;
+  background: #ffffff;
+  border: 2px solid #24211d;
+}
+
+.navbar-login:hover {
+  background: #f8f5ed;
+  transform: translateY(-2px);
+}
+
+.navbar-register {
+  color: #ffffff;
+  background: #7c64d8;
+  border: 2px solid #24211d;
+  box-shadow: 3px 3px 0 #24211d;
+}
+
+.navbar-register:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #24211d;
 }
 
 /* =========================
    Mobile
 ========================= */
 
-@media (max-width: 600px) {
+@media (max-width: 760px) {
   .navbar {
     padding: 12px 12px 0;
   }
 
   .navbar-inner {
     height: 62px;
-
     padding: 0 8px 0 12px;
-
     border-radius: 22px;
-
     box-shadow: 4px 4px 0 #24211d;
   }
 
@@ -179,7 +171,6 @@
   .navbar-logo-mark {
     width: 34px;
     height: 34px;
-
     font-size: 15px;
   }
 
@@ -189,15 +180,14 @@
 
   .navbar-links {
     gap: 2px;
+    margin: 0 auto;
   }
 
   .navbar-link {
     flex-direction: column;
     gap: 3px;
-
-    min-width: 55px;
-    padding: 7px 8px;
-
+    min-width: 52px;
+    padding: 7px 6px;
     font-size: 9px;
   }
 
@@ -205,10 +195,42 @@
     font-size: 17px;
   }
 
-  .navbar-profile {
-    width: 38px;
-    height: 38px;
+  .navbar-auth {
+    gap: 4px;
+  }
 
-    font-size: 11px;
+  .navbar-login,
+  .navbar-register {
+    min-height: 34px;
+    padding: 0 9px;
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 520px) {
+  .navbar-inner {
+    padding-left: 8px;
+    padding-right: 7px;
+  }
+
+  .navbar-links {
+    gap: 0;
+  }
+
+  .navbar-link {
+    min-width: 46px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  .navbar-auth {
+    gap: 3px;
+  }
+
+  .navbar-login,
+  .navbar-register {
+    min-height: 32px;
+    padding: 0 7px;
+    font-size: 8px;
   }
 }

@@ -43,9 +43,15 @@ function Navbar() {
           </NavLink>
         </div>
 
-        <button className="navbar-profile" type="button">
-          <span>U</span>
-        </button>
+        <div className="navbar-auth">
+          <NavLink to="/login" className="navbar-login">
+            ログイン
+          </NavLink>
+
+          <NavLink to="/register" className="navbar-register">
+            サインイン
+          </NavLink>
+        </div>
       </div>
     </nav>
   );
