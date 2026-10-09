@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import StudyResult from "../components/study/StudyResult";
 import "./Study.css";
 
 const questions = [
@@ -115,10 +116,14 @@ function Study() {
   const [debitAmount, setDebitAmount] = useState("");
   const [creditAmount, setCreditAmount] = useState("");
   const [result, setResult] = useState(null);
-  const [correctCount, setCorrectCount] = useState(0);
 
-  const currentQuestion = questions[questionIndex];
+  const [correctCount, setCorrectCount] = useState(0);
+  const [incorrectCount, setIncorrectCount] = useState(0);
+  const [skippedCount, setSkippedCount] = useState(0);
+  const [reviewQuestions, setReviewQuestions] = useState([]);
+
   const isFinished = questionIndex >= questions.length;
+  const currentQuestion = questions[questionIndex];
 
   const resetAnswer = () => {
     setDebit("");
@@ -158,6 +163,16 @@ function Study() {
 
     if (isCorrect) {
       setCorrectCount((count) => count + 1);
+    } else {
+      setIncorrectCount((count) => count + 1);
+
+      setReviewQuestions((previous) => [
+        ...previous,
+        {
+          ...currentQuestion,
+          status: "incorrect",
+        },
+      ]);
     }
   };
 
@@ -171,6 +186,16 @@ function Study() {
       skipped: true,
       validationError: "",
     });
+
+    setSkippedCount((count) => count + 1);
+
+    setReviewQuestions((previous) => [
+      ...previous,
+      {
+        ...currentQuestion,
+        status: "skipped",
+      },
+    ]);
   };
 
   const handleNext = () => {
@@ -181,58 +206,22 @@ function Study() {
   const handleRestart = () => {
     setQuestionIndex(0);
     setCorrectCount(0);
+    setIncorrectCount(0);
+    setSkippedCount(0);
+    setReviewQuestions([]);
     resetAnswer();
   };
 
   if (isFinished) {
     return (
-      <section className="study-page">
-        <div className="study-container study-result-screen">
-          <div className="study-result-illustration">🎉</div>
-
-          <p className="study-eyebrow">SESSION COMPLETE!</p>
-
-          <h1>10問おつかれさま！</h1>
-
-          <p className="study-result-description">
-            一歩ずつ、簿記が身についています。
-          </p>
-
-          <div className="study-score-card">
-            <span>今回の正解数</span>
-
-            <strong>
-              {correctCount}
-              <small> / {questions.length} 問</small>
-            </strong>
-
-            <div className="study-score-track">
-              <div
-                className="study-score-fill"
-                style={{
-                  width: `${(correctCount / questions.length) * 100}%`,
-                }}
-              />
-            </div>
-
-            <p className="study-result-description">
-              正答率：{Math.round((correctCount / questions.length) * 100)}%
-            </p>
-          </div>
-
-          <button
-            type="button"
-            className="study-primary-button"
-            onClick={handleRestart}
-          >
-            もう一度チャレンジ！
-          </button>
-
-          <Link to="/" className="study-home-link">
-            ホームへ戻る
-          </Link>
-        </div>
-      </section>
+      <StudyResult
+        correctCount={correctCount}
+        incorrectCount={incorrectCount}
+        skippedCount={skippedCount}
+        totalQuestions={questions.length}
+        reviewQuestions={reviewQuestions}
+        onRestart={handleRestart}
+      />
     );
   }
 
@@ -297,7 +286,6 @@ function Study() {
           </div>
 
           <div className="study-journal">
-            {/* 借方 */}
             <div className="study-journal-column">
               <div className="study-column-title study-debit-title">借方</div>
 
@@ -313,7 +301,6 @@ function Study() {
                 required
               >
                 <option value="">選択してください</option>
-
                 {accounts.map((account) => (
                   <option key={account} value={account}>
                     {account}
@@ -340,7 +327,6 @@ function Study() {
               />
             </div>
 
-            {/* 貸方 */}
             <div className="study-journal-column">
               <div className="study-column-title study-credit-title">貸方</div>
 
@@ -356,7 +342,6 @@ function Study() {
                 required
               >
                 <option value="">選択してください</option>
-
                 {accounts.map((account) => (
                   <option key={account} value={account}>
                     {account}
@@ -384,14 +369,12 @@ function Study() {
             </div>
           </div>
 
-          {/* 入力エラー */}
           {result?.validationError && (
             <p className="study-validation-error" role="alert">
               {result.validationError}
             </p>
           )}
 
-          {/* 正解・不正解・スキップのフィードバック */}
           {result && !result.validationError && (
             <div
               className={`study-feedback ${
@@ -436,7 +419,6 @@ function Study() {
             </div>
           )}
 
-          {/* 回答前：スキップと答え合わせ */}
           {!result || result.validationError ? (
             <>
               <button
@@ -452,7 +434,6 @@ function Study() {
               </button>
             </>
           ) : (
-            /* 回答後：次の問題へ */
             <button
               type="button"
               className="study-primary-button"

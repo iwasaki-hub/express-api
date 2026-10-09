@@ -1,0 +1,327 @@
+/* ========================================
+   学習結果画面
+======================================== */
+
+.study-result-screen {
+  max-width: 540px;
+  padding-top: 50px;
+  text-align: center;
+}
+
+.study-result-illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 22px;
+  border: 2px solid #24211d;
+  border-radius: 32px;
+  background: #f6c95f;
+  box-shadow: 5px 5px 0 #24211d;
+  font-size: 48px;
+}
+
+.study-eyebrow {
+  margin: 0 0 10px;
+  color: #777067;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.study-result-screen > h1 {
+  margin: 0;
+  font-size: clamp(26px, 5vw, 36px);
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.study-result-description {
+  margin: 12px 0 26px;
+  color: #777067;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* ========================================
+   正解数・正答率カード
+======================================== */
+
+.study-score-card {
+  padding: 26px;
+  border: 2px solid #24211d;
+  border-radius: 26px;
+  background: #fff;
+  box-shadow: 5px 5px 0 #24211d;
+  text-align: left;
+}
+
+.study-score-card > span {
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.study-score-card > strong {
+  display: block;
+  margin: 10px 0 18px;
+  font-size: 42px;
+  font-weight: 900;
+}
+
+.study-score-card > strong small {
+  color: #777067;
+  font-size: 15px;
+}
+
+.study-score-track {
+  overflow: hidden;
+  height: 12px;
+  border: 2px solid #24211d;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.study-score-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #f6c95f;
+  transition: width 0.25s ease;
+}
+
+.study-score-card .study-result-description {
+  margin: 14px 0 0;
+}
+
+/* ========================================
+   正解・不正解・スキップの集計
+======================================== */
+
+.study-result-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.study-stat-card {
+  padding: 16px 8px;
+  border: 2px solid #24211d;
+  border-radius: 18px;
+  box-shadow: 3px 4px 0 #24211d;
+  text-align: center;
+}
+
+.study-stat-card span,
+.study-stat-card small {
+  display: block;
+  font-size: 12px;
+}
+
+.study-stat-card strong {
+  display: inline-block;
+  margin: 8px 3px 0;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.study-stat-card.is-correct {
+  background: #e3f4ed;
+}
+
+.study-stat-card.is-incorrect {
+  background: #fce8e1;
+}
+
+.study-stat-card.is-skipped {
+  background: #fff2c9;
+}
+
+/* ========================================
+   復習セクション
+======================================== */
+
+.study-review-section {
+  margin-top: 32px;
+  text-align: left;
+}
+
+.study-review-section h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.study-review-description {
+  margin: 0 0 20px;
+  color: #625c53;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.study-review-card {
+  padding: 18px;
+  margin-bottom: 16px;
+  border: 2px solid #24211d;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 3px 4px 0 #24211d;
+}
+
+.study-review-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.study-review-badge.is-incorrect {
+  background: #fce8e1;
+  color: #a63e28;
+}
+
+.study-review-badge.is-skipped {
+  background: #fff2c9;
+  color: #785b13;
+}
+
+.study-review-card h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 850;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+/* 正しい仕訳 */
+
+.study-review-answer {
+  padding: 12px;
+  border-radius: 12px;
+  background: #f8f5ed;
+}
+
+.study-review-answer p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 6px 0;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.study-review-answer strong {
+  flex-shrink: 0;
+}
+
+.study-review-answer span {
+  margin-left: auto;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.study-review-explanation {
+  margin: 14px 0 0;
+  color: #4f4941;
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+/* 復習する問題がない場合 */
+
+.study-review-empty {
+  padding: 22px 16px;
+  border: 2px dashed #d9d0c2;
+  border-radius: 18px;
+  background: #fff;
+  text-align: center;
+}
+
+.study-review-empty > span {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 30px;
+}
+
+.study-review-empty p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.8;
+}
+
+/* ========================================
+   ホームへのリンク
+======================================== */
+
+.study-home-link {
+  display: inline-block;
+  margin-top: 28px;
+  color: #24211d;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ========================================
+   モバイル対応
+======================================== */
+
+@media (max-width: 600px) {
+  .study-result-screen {
+    padding-top: 32px;
+  }
+
+  .study-score-card {
+    padding: 22px 18px;
+    border-radius: 22px;
+  }
+
+  .study-result-stats {
+    gap: 10px;
+  }
+
+  .study-stat-card {
+    padding: 14px 6px;
+  }
+
+  .study-stat-card strong {
+    font-size: 27px;
+  }
+
+  .study-review-card {
+    padding: 16px;
+  }
+
+  .study-review-section h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .study-result-stats {
+    gap: 8px;
+  }
+
+  .study-stat-card {
+    padding: 12px 4px;
+  }
+
+  .study-stat-card strong {
+    font-size: 24px;
+  }
+
+  .study-stat-card span,
+  .study-stat-card small {
+    font-size: 11px;
+  }
+
+  .study-review-answer p {
+    font-size: 13px;
+  }
+}

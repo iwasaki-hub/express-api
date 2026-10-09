@@ -1,3 +1,7 @@
+/* ========================================
+   学習画面の共通レイアウト
+======================================== */
+
 .study-page {
   min-height: calc(100vh - 100px);
   padding: 32px 20px 64px;
@@ -36,6 +40,10 @@
   font-weight: 800;
 }
 
+/* ========================================
+   進捗バー
+======================================== */
+
 .study-progress-section {
   margin-bottom: 24px;
 }
@@ -47,8 +55,7 @@
   margin-bottom: 10px;
 }
 
-.study-progress-text > span,
-.study-journal-heading > span {
+.study-progress-text > span {
   color: #777067;
   font-size: 11px;
   font-weight: 900;
@@ -65,8 +72,7 @@
   font-size: 13px;
 }
 
-.study-progress-track,
-.study-score-track {
+.study-progress-track {
   overflow: hidden;
   height: 12px;
   border: 2px solid #24211d;
@@ -74,17 +80,19 @@
   background: #fff;
 }
 
-.study-progress-fill,
-.study-score-fill {
+.study-progress-fill {
   height: 100%;
   border-radius: 999px;
   background: #f6c95f;
   transition: width 0.25s ease;
 }
 
+/* ========================================
+   問題カード
+======================================== */
+
 .study-question-card,
-.study-answer-card,
-.study-score-card {
+.study-answer-card {
   border: 2px solid #24211d;
   border-radius: 26px;
   background: #fff;
@@ -148,6 +156,10 @@
   line-height: 1.8;
 }
 
+/* ========================================
+   仕訳入力フォーム
+======================================== */
+
 .study-answer-card {
   padding: 28px;
 }
@@ -164,6 +176,13 @@
   margin: 0;
   font-size: 20px;
   font-weight: 900;
+}
+
+.study-journal-heading > span {
+  color: #777067;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.4px;
 }
 
 .study-journal {
@@ -237,6 +256,10 @@
   opacity: 1;
 }
 
+/* ========================================
+   ボタン
+======================================== */
+
 .study-primary-button {
   display: flex;
   align-items: center;
@@ -253,6 +276,7 @@
   font-size: 16px;
   font-weight: 900;
   text-align: center;
+  cursor: pointer;
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;
@@ -267,6 +291,38 @@
   transform: translateY(4px);
   box-shadow: none;
 }
+
+.study-skip-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 16px;
+  margin-top: 18px;
+  border: 2px solid #24211d;
+  border-radius: 16px;
+  background: #fff;
+  color: #24211d;
+  font-size: 14px;
+  font-weight: 850;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.15s ease;
+}
+
+.study-skip-button:hover {
+  background: #e3f4ed;
+}
+
+.study-skip-button:active {
+  transform: scale(0.98);
+}
+
+/* ========================================
+   答え合わせ・解説
+======================================== */
 
 .study-validation-error {
   margin: 16px 0 0;
@@ -288,6 +344,10 @@
 
 .study-feedback.is-incorrect {
   background: #fff0e8;
+}
+
+.study-feedback.is-skipped {
+  background: #fff8dc;
 }
 
 .study-feedback-title {
@@ -343,6 +403,10 @@
   white-space: nowrap;
 }
 
+/* ========================================
+   学習画面のメッセージ
+======================================== */
+
 .study-encouragement {
   margin: 24px 0 0;
   color: #777067;
@@ -351,76 +415,9 @@
   text-align: center;
 }
 
-.study-result-screen {
-  max-width: 540px;
-  padding-top: 50px;
-  text-align: center;
-}
-
-.study-result-illustration {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100px;
-  height: 100px;
-  margin: 0 auto 22px;
-  border: 2px solid #24211d;
-  border-radius: 32px;
-  background: #f6c95f;
-  box-shadow: 5px 5px 0 #24211d;
-  font-size: 48px;
-}
-
-.study-eyebrow {
-  margin: 0 0 10px;
-  color: #777067;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 2px;
-}
-
-.study-result-screen h1 {
-  margin: 0;
-  font-size: clamp(26px, 5vw, 36px);
-  font-weight: 900;
-  line-height: 1.5;
-}
-
-.study-result-description {
-  margin: 12px 0 26px;
-  color: #777067;
-  font-size: 14px;
-  line-height: 1.8;
-}
-
-.study-score-card {
-  padding: 26px;
-  text-align: left;
-}
-
-.study-score-card > span {
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.study-score-card > strong {
-  display: block;
-  margin: 10px 0 18px;
-  font-size: 42px;
-  font-weight: 900;
-}
-
-.study-score-card > strong small {
-  color: #777067;
-  font-size: 15px;
-}
-
-.study-home-link {
-  display: inline-block;
-  margin-top: 28px;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
+/* ========================================
+   モバイル対応
+======================================== */
 
 @media (max-width: 600px) {
   .study-page {
@@ -503,35 +500,4 @@
     padding: 8px 10px;
     font-size: 11px;
   }
-}
-
-.study-skip-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 50px;
-  padding: 12px 16px;
-  margin-top: 18px;
-  border: 2px solid #24211d;
-  border-radius: 16px;
-  background: #fff;
-  color: #24211d;
-  font-size: 14px;
-  font-weight: 850;
-  transition:
-    background 0.2s ease,
-    transform 0.15s ease;
-}
-
-.study-skip-button:hover {
-  background: #e3f4ed;
-}
-
-.study-skip-button:active {
-  transform: scale(0.98);
-}
-
-.study-feedback.is-skipped {
-  background: #fff8dc;
 }
