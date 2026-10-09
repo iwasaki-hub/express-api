@@ -98,6 +98,16 @@ const accounts = [
   "資本金",
 ];
 
+const formatAmount = (value) => {
+  const numbers = value.replace(/[^0-9]/g, "");
+
+  if (numbers === "") {
+    return "";
+  }
+
+  return Number(numbers).toLocaleString("ja-JP");
+};
+
 function Study() {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [debit, setDebit] = useState("");
@@ -137,8 +147,8 @@ function Study() {
     const isCorrect =
       debit === currentQuestion.debit &&
       credit === currentQuestion.credit &&
-      Number(debitAmount) === currentQuestion.amount &&
-      Number(creditAmount) === currentQuestion.amount;
+      Number(debitAmount.replace(/,/g, "")) === currentQuestion.amount &&
+      Number(creditAmount.replace(/,/g, "")) === currentQuestion.amount;
 
     setResult({
       correct: isCorrect,
@@ -319,12 +329,11 @@ function Study() {
                 id="debit-amount"
                 type="text"
                 inputMode="numeric"
-                pattern="[0-9]*"
                 autoComplete="off"
-                placeholder="例：10000"
+                placeholder="例：10,000"
                 value={debitAmount}
                 onChange={(event) =>
-                  setDebitAmount(event.target.value.replace(/[^0-9]/g, ""))
+                  setDebitAmount(formatAmount(event.target.value))
                 }
                 disabled={!!result && !result.validationError}
                 required
@@ -363,12 +372,11 @@ function Study() {
                 id="credit-amount"
                 type="text"
                 inputMode="numeric"
-                pattern="[0-9]*"
                 autoComplete="off"
-                placeholder="例：10000"
+                placeholder="例：10,000"
                 value={creditAmount}
                 onChange={(event) =>
-                  setCreditAmount(event.target.value.replace(/[^0-9]/g, ""))
+                  setCreditAmount(formatAmount(event.target.value))
                 }
                 disabled={!!result && !result.validationError}
                 required
