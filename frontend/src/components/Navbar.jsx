@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../context/AuthContext";
@@ -8,9 +8,25 @@ import "./Navbar.css";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  
   const navigate = useNavigate();
-
   const { user, logout } = useAuth();
+  
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleScroll = () => {
+      setIsMenuOpen(false);
+    };
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isMenuOpen]);
 
   const handleLogout = async () => {
     await logout();
