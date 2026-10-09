@@ -9,6 +9,8 @@ import Navbar from "./components/Navbar";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Study from "./pages/Study";
 
 function App() {
   return (
@@ -22,9 +24,13 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/users" element={<Users />} />
               <Route path="/users/:id" element={<UserDetail />} />
-
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
+
+              {/* ログイン必須のページ */}
+              <Route element={<ProtectedRoute />}>
+                <Route path="/study" element={<Study />} />
+              </Route>
             </Routes>
           </main>
         </div>
