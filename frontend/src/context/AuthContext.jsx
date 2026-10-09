@@ -32,10 +32,11 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       await logoutApi();
-
-      setUser(null);
     } catch (error) {
       console.error("Logout error:", error);
+    } finally {
+      // APIの成否に関係なく、画面上のログイン状態を解除
+      setUser(null);
     }
   };
 
