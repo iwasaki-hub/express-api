@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import StudyResult from "../components/study/StudyResult";
+import { createStudyRecord } from "../api/studyRecordApi";
 import "./Study.css";
 
 const questions = [
@@ -111,6 +112,7 @@ const formatAmount = (value) => {
 
 function Study() {
   const [questionIndex, setQuestionIndex] = useState(0);
+
   const [debit, setDebit] = useState("");
   const [credit, setCredit] = useState("");
   const [debitAmount, setDebitAmount] = useState("");
@@ -121,6 +123,13 @@ function Study() {
   const [incorrectCount, setIncorrectCount] = useState(0);
   const [skippedCount, setSkippedCount] = useState(0);
   const [reviewQuestions, setReviewQuestions] = useState([]);
+
+  // 学習記録の保存状態
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
+
+  // 保存処理の二重実行を防ぐ
+  const saveInProgressRef = useRef(false);
 
   const isFinished = questionIndex >= questions.length;
   const currentQuestion = questions[questionIndex];
@@ -133,6 +142,7 @@ function Study() {
     setResult(null);
   };
 
+  // 答え合わせ
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -176,6 +186,7 @@ function Study() {
     }
   };
 
+  // 解説を見てスキップ
   const handleSkip = () => {
     if (result && !result.validationError) {
       return;
@@ -198,49 +209,63 @@ function Study() {
     ]);
   };
 
-  const handleNext = () => {
-    // 最後の問題なら学習結果を保存する
-    if (questionIndex === questions.length - 1) {
-      const session = {
-        id: Date.now(),
-        date: new Date().toISOString(),
+  // 次の問題へ進む、または学習記録を保存する
+  const handleNext = async () => {
+    if (saveInProgressRef.current) {
+      return;
+    }
+
+    // 最後の問題でなければ、従来どおり次へ進む
+    if (questionIndex !== questions.length - 1) {
+      setQuestionIndex((index) => index + 1);
+      resetAnswer();
+      return;
+    }
+
+    // 最後の問題：MongoDB に学習記録を保存
+    saveInProgressRef.current = true;
+    setIsSaving(true);
+    setSaveError("");
+
+    try {
+      await createStudyRecord({
         totalQuestions: questions.length,
         correctCount,
         incorrectCount,
         skippedCount,
-        accuracy: Math.round((correctCount / questions.length) * 100),
         reviewQuestions,
-      };
+      });
 
-      try {
-        const savedHistory = JSON.parse(
-          localStorage.getItem("studyHistory") || "[]",
-        );
+      // 保存成功後に結果画面へ進む
+      setQuestionIndex((index) => index + 1);
+      resetAnswer();
+    } catch (error) {
+      console.error("学習記録の保存に失敗しました:", error);
 
-        const history = Array.isArray(savedHistory) ? savedHistory : [];
-
-        localStorage.setItem(
-          "studyHistory",
-          JSON.stringify([session, ...history]),
-        );
-      } catch (error) {
-        console.error("学習履歴の保存に失敗しました。", error);
-      }
+      setSaveError(
+        error.message ||
+          "学習記録を保存できませんでした。もう一度お試しください。",
+      );
+    } finally {
+      saveInProgressRef.current = false;
+      setIsSaving(false);
     }
-
-    setQuestionIndex((index) => index + 1);
-    resetAnswer();
   };
 
+  // もう一度学習する
   const handleRestart = () => {
     setQuestionIndex(0);
+
     setCorrectCount(0);
     setIncorrectCount(0);
     setSkippedCount(0);
     setReviewQuestions([]);
+
+    setSaveError("");
     resetAnswer();
   };
 
+  // 全問終了後の結果画面
   if (isFinished) {
     return (
       <StudyResult
@@ -330,6 +355,7 @@ function Study() {
                 required
               >
                 <option value="">選択してください</option>
+
                 {accounts.map((account) => (
                   <option key={account} value={account}>
                     {account}
@@ -371,6 +397,7 @@ function Study() {
                 required
               >
                 <option value="">選択してください</option>
+
                 {accounts.map((account) => (
                   <option key={account} value={account}>
                     {account}
@@ -448,6 +475,12 @@ function Study() {
             </div>
           )}
 
+          {saveError && (
+            <p className="study-validation-error" role="alert">
+              {saveError}
+            </p>
+          )}
+
           {!result || result.validationError ? (
             <>
               <button
@@ -467,10 +500,13 @@ function Study() {
               type="button"
               className="study-primary-button"
               onClick={handleNext}
+              disabled={isSaving}
             >
-              {questionIndex === questions.length - 1
-                ? "結果を見る"
-                : "次の問題へ →"}
+              {isSaving
+                ? "学習記録を保存中..."
+                : questionIndex === questions.length - 1
+                  ? "保存して結果を見る"
+                  : "次の問題へ →"}
             </button>
           )}
         </form>

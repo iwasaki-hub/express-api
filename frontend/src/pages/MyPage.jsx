@@ -1,18 +1,44 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getStudyRecords } from "../api/studyRecordApi";
 import "./MyPage.css";
 
 function MyPage() {
   const [history, setHistory] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem("studyHistory") || "[]");
+    let isMounted = true;
 
-      setHistory(Array.isArray(saved) ? saved : []);
-    } catch {
-      setHistory([]);
-    }
+    const loadHistory = async () => {
+      try {
+        setIsLoading(true);
+        setError("");
+
+        const records = await getStudyRecords();
+
+        if (isMounted) {
+          setHistory(Array.isArray(records) ? records : []);
+        }
+      } catch (error) {
+        console.error("学習履歴の取得に失敗しました:", error);
+
+        if (isMounted) {
+          setError(error.message || "学習履歴を取得できませんでした。");
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    loadHistory();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const totalQuestions = history.reduce(
@@ -66,19 +92,19 @@ function MyPage() {
         <section className="mypage-summary">
           <article className="mypage-summary-card is-yellow">
             <span>累計学習問題数</span>
-            <strong>{totalQuestions}</strong>
+            <strong>{isLoading ? "—" : totalQuestions}</strong>
             <small>問</small>
           </article>
 
           <article className="mypage-summary-card is-mint">
             <span>累計正答率</span>
-            <strong>{accuracy}</strong>
+            <strong>{isLoading ? "—" : accuracy}</strong>
             <small>%</small>
           </article>
 
           <article className="mypage-summary-card is-purple">
             <span>学習回数</span>
-            <strong>{history.length}</strong>
+            <strong>{isLoading ? "—" : history.length}</strong>
             <small>回</small>
           </article>
         </section>
@@ -88,24 +114,36 @@ function MyPage() {
 
           <div className="mypage-breakdown-row">
             <span>正解</span>
-            <strong>{totalCorrect}問</strong>
+            <strong>{isLoading ? "—" : `${totalCorrect}問`}</strong>
           </div>
 
           <div className="mypage-breakdown-row">
             <span>不正解</span>
-            <strong>{totalIncorrect}問</strong>
+            <strong>{isLoading ? "—" : `${totalIncorrect}問`}</strong>
           </div>
 
           <div className="mypage-breakdown-row">
             <span>スキップ</span>
-            <strong>{totalSkipped}問</strong>
+            <strong>{isLoading ? "—" : `${totalSkipped}問`}</strong>
           </div>
         </section>
 
         <section className="mypage-history">
           <h2>学習履歴</h2>
 
-          {history.length === 0 ? (
+          {isLoading ? (
+            <div className="mypage-empty">
+              <p>学習履歴を読み込んでいます...</p>
+            </div>
+          ) : error ? (
+            <div className="mypage-empty" role="alert">
+              <h3>学習履歴を取得できませんでした</h3>
+              <p>{error}</p>
+              <p>
+                ログイン状態とサーバーの接続を確認して、もう一度お試しください。
+              </p>
+            </div>
+          ) : history.length === 0 ? (
             <div className="mypage-empty">
               <span>📚</span>
               <h3>これから一緒に積み重ねよう！</h3>
@@ -119,13 +157,13 @@ function MyPage() {
             </div>
           ) : (
             history.map((session) => (
-              <article className="mypage-history-card" key={session.id}>
+              <article className="mypage-history-card" key={session._id}>
                 <div className="mypage-history-top">
                   <div>
                     <span className="mypage-history-label">
                       仕訳トレーニング
                     </span>
-                    <p>{formatDate(session.date)}</p>
+                    <p>{formatDate(session.createdAt)}</p>
                   </div>
 
                   <strong className="mypage-history-score">
