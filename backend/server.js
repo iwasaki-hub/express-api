@@ -31,6 +31,8 @@ app.get("/", (req, res) => {
 app.use("/api/auth", require("./routes/authRoutes"));
 // User routes
 app.use("/api/users", require("./routes/userRoutes"));
+// Study record routes
+app.use("/api/study-records", require("./routes/studyRecordRoutes"));
 
 app.listen(PORT, async () => {
   await connectDB();
