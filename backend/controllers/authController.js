@@ -96,6 +96,13 @@ const login = async (req, res) => {
        4. JWTをHttpOnly Cookieに保存
     ------------------------------------ */
 
+    console.log("[Login Debug]", {
+      nodeEnv: process.env.NODE_ENV,
+      frontendUrl: process.env.FRONTEND_URL,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    });
+
     const isProduction = process.env.NODE_ENV === "production";
 
     res.cookie("token", token, {
