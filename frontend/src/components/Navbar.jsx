@@ -1,4 +1,4 @@
-import { useState, useState } from "react";
+import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 import { useAuth } from "../context/AuthContext";
@@ -8,10 +8,9 @@ import "./Navbar.css";
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  
+
   useEffect(() => {
     if (!isMenuOpen) return;
 
