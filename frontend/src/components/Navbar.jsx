@@ -71,6 +71,19 @@ function Navbar() {
             <span>学習</span>
           </NavLink>
 
+          {/* マイページ：ログイン中のみ表示 */}
+          {user && (
+            <NavLink
+              to="/mypage"
+              className={({ isActive }) =>
+                `navbar-link ${isActive ? "active" : ""}`
+              }
+            >
+              <span className="navbar-icon">◉</span>
+              <span>マイページ</span>
+            </NavLink>
+          )}
+
           <NavLink
             to="/users"
             className={({ isActive }) =>
@@ -114,7 +127,7 @@ function Navbar() {
           type="button"
           className={`navbar-menu-button ${isMenuOpen ? "is-open" : ""}`}
           onClick={() => setIsMenuOpen((prev) => !prev)}
-          aria-label="メニューを開く"
+          aria-label={isMenuOpen ? "メニューを閉じる" : "メニューを開く"}
           aria-expanded={isMenuOpen}
         >
           <span></span>
@@ -125,17 +138,50 @@ function Navbar() {
 
       {/* Mobile Menu */}
       <div className={`navbar-mobile-menu ${isMenuOpen ? "is-open" : ""}`}>
-        <NavLink to="/" end className="navbar-mobile-link" onClick={closeMenu}>
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            `navbar-mobile-link ${isActive ? "active" : ""}`
+          }
+          onClick={closeMenu}
+        >
           <span className="navbar-mobile-icon">⌂</span>
           ホーム
         </NavLink>
 
-        <NavLink to="/study" className="navbar-mobile-link" onClick={closeMenu}>
+        <NavLink
+          to="/study"
+          className={({ isActive }) =>
+            `navbar-mobile-link ${isActive ? "active" : ""}`
+          }
+          onClick={closeMenu}
+        >
           <span className="navbar-mobile-icon">✎</span>
           学習
         </NavLink>
 
-        <NavLink to="/users" className="navbar-mobile-link" onClick={closeMenu}>
+        {/* マイページ：ログイン中のみ表示 */}
+        {user && (
+          <NavLink
+            to="/mypage"
+            className={({ isActive }) =>
+              `navbar-mobile-link ${isActive ? "active" : ""}`
+            }
+            onClick={closeMenu}
+          >
+            <span className="navbar-mobile-icon">◉</span>
+            マイページ
+          </NavLink>
+        )}
+
+        <NavLink
+          to="/users"
+          className={({ isActive }) =>
+            `navbar-mobile-link ${isActive ? "active" : ""}`
+          }
+          onClick={closeMenu}
+        >
           <span className="navbar-mobile-icon">○</span>
           ユーザー
         </NavLink>

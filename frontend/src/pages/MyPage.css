@@ -1,0 +1,266 @@
+.mypage {
+  min-height: calc(100vh - 100px);
+  padding: 36px 20px 64px;
+  background: #f8f5ed;
+  color: #24211d;
+}
+
+.mypage-container {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.mypage-header {
+  margin-bottom: 30px;
+}
+
+.mypage-eyebrow {
+  margin: 0 0 8px;
+  color: #777067;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+.mypage-header h1 {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 40px);
+  font-weight: 900;
+}
+
+.mypage-header > p:last-child {
+  color: #777067;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.mypage-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.mypage-summary-card {
+  padding: 18px 12px;
+  border: 2px solid #24211d;
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 #24211d;
+}
+
+.mypage-summary-card.is-yellow {
+  background: #f6c95f;
+}
+
+.mypage-summary-card.is-mint {
+  background: #e3f4ed;
+}
+
+.mypage-summary-card.is-purple {
+  background: #e8e0ff;
+}
+
+.mypage-summary-card span,
+.mypage-summary-card small {
+  display: block;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.mypage-summary-card strong {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: clamp(27px, 5vw, 38px);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.mypage-summary-card small {
+  margin-top: 5px;
+}
+
+.mypage-breakdown,
+.mypage-history-card,
+.mypage-empty {
+  padding: 22px;
+  margin-bottom: 24px;
+  border: 2px solid #24211d;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 4px 4px 0 #24211d;
+}
+
+.mypage-breakdown h2,
+.mypage-history h2 {
+  margin: 0 0 18px;
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.mypage-breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid #e8e1d6;
+  font-size: 14px;
+}
+
+.mypage-breakdown-row:last-child {
+  border-bottom: 0;
+}
+
+.mypage-breakdown-row strong {
+  font-weight: 900;
+}
+
+.mypage-history-card {
+  margin-bottom: 16px;
+}
+
+.mypage-history-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mypage-history-label {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.mypage-history-top p {
+  margin: 7px 0 0;
+  color: #777067;
+  font-size: 12px;
+}
+
+.mypage-history-score {
+  flex-shrink: 0;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.mypage-history-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.mypage-history-stats span {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f8f5ed;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.mypage-empty {
+  text-align: center;
+  box-shadow: none;
+  border-style: dashed;
+  background: #fffdf8;
+}
+
+.mypage-empty > span {
+  font-size: 38px;
+}
+
+.mypage-empty h3 {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.mypage-empty p {
+  color: #777067;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.mypage-primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  margin-top: 12px;
+  border: 2px solid #24211d;
+  border-radius: 14px;
+  background: #f6c95f;
+  box-shadow: 0 4px 0 #24211d;
+  color: #24211d;
+  font-size: 14px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.mypage-home-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #24211d;
+  font-size: 14px;
+  font-weight: 800;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 520px) {
+  .mypage {
+    padding: 26px 16px 44px;
+  }
+
+  .mypage-summary {
+    gap: 9px;
+  }
+
+  .mypage-summary-card {
+    padding: 15px 8px;
+    border-radius: 16px;
+    box-shadow: 3px 3px 0 #24211d;
+  }
+
+  .mypage-summary-card span {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .mypage-summary-card strong {
+    font-size: 27px;
+  }
+
+  .mypage-breakdown,
+  .mypage-history-card,
+  .mypage-empty {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .mypage-history-score {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 360px) {
+  .mypage {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .mypage-summary {
+    gap: 7px;
+  }
+
+  .mypage-summary-card {
+    padding: 12px 5px;
+  }
+
+  .mypage-summary-card span {
+    font-size: 10px;
+  }
+
+  .mypage-summary-card strong {
+    font-size: 23px;
+  }
+}

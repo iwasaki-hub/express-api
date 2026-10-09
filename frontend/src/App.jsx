@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Study from "./pages/Study";
+import MyPage from "./pages/MyPage";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
               {/* ログイン必須のページ */}
               <Route element={<ProtectedRoute />}>
                 <Route path="/study" element={<Study />} />
+                <Route path="/mypage" element={<MyPage />} />
               </Route>
             </Routes>
           </main>

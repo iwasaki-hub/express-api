@@ -199,6 +199,35 @@ function Study() {
   };
 
   const handleNext = () => {
+    // 最後の問題なら学習結果を保存する
+    if (questionIndex === questions.length - 1) {
+      const session = {
+        id: Date.now(),
+        date: new Date().toISOString(),
+        totalQuestions: questions.length,
+        correctCount,
+        incorrectCount,
+        skippedCount,
+        accuracy: Math.round((correctCount / questions.length) * 100),
+        reviewQuestions,
+      };
+
+      try {
+        const savedHistory = JSON.parse(
+          localStorage.getItem("studyHistory") || "[]",
+        );
+
+        const history = Array.isArray(savedHistory) ? savedHistory : [];
+
+        localStorage.setItem(
+          "studyHistory",
+          JSON.stringify([session, ...history]),
+        );
+      } catch (error) {
+        console.error("学習履歴の保存に失敗しました。", error);
+      }
+    }
+
     setQuestionIndex((index) => index + 1);
     resetAnswer();
   };
