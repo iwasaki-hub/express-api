@@ -5,6 +5,12 @@ const authMiddleware = (req, res, next) => {
     // CookieからJWTを取得
     const token = req.cookies.token;
 
+    console.log("[Auth Debug]", {
+      path: req.originalUrl,
+      hasCookies: Boolean(req.headers.cookie),
+      hasToken: Boolean(token),
+    });
+
     if (!token) {
       return res.status(401).json({
         message: "ログインが必要です",

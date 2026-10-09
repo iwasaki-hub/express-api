@@ -19,7 +19,7 @@ app.use(
 app.use(morgan("dev"));
 
 app.use((req, res, next) => {
-  console.log(req.headers["user-agent"].split(" ")[0]);
+  console.log(req.headers["user-agent"].split(" ")[0] || "unknown");
   next();
 });
 
