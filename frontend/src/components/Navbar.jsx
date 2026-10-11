@@ -45,7 +45,7 @@ function Navbar() {
         {/* Logo */}
         <NavLink to="/" className="navbar-logo" onClick={closeMenu}>
           <span className="navbar-logo-mark">✦</span>
-          <span className="navbar-logo-text">bokki</span>
+          <span className="navbar-logo-text">簿記</span>
         </NavLink>
 
         {/* Desktop Navigation */}
