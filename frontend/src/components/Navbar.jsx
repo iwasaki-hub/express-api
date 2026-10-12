@@ -61,6 +61,17 @@ function Navbar() {
             <span>ホーム</span>
           </NavLink>
 
+          {/* 使い方 */}
+          <NavLink
+            to="/usage"
+            className={({ isActive }) =>
+              `navbar-link ${isActive ? "active" : ""}`
+            }
+          >
+            <span className="navbar-icon">ⓘ</span>
+            <span>使い方</span>
+          </NavLink>
+
           <NavLink
             to="/study"
             className={({ isActive }) =>
@@ -148,6 +159,18 @@ function Navbar() {
         >
           <span className="navbar-mobile-icon">⌂</span>
           ホーム
+        </NavLink>
+
+        {/* 使い方 */}
+        <NavLink
+          to="/usage"
+          className={({ isActive }) =>
+            `navbar-mobile-link ${isActive ? "active" : ""}`
+          }
+          onClick={closeMenu}
+        >
+          <span className="navbar-mobile-icon">ⓘ</span>
+          使い方
         </NavLink>
 
         <NavLink

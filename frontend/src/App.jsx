@@ -12,6 +12,7 @@ import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Study from "./pages/Study";
 import MyPage from "./pages/MyPage";
+import Usage from "./pages/Usage";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
               <Route path="/users/:id" element={<UserDetail />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-
+              <Route path="/usage" element={<Usage />} />
               {/* ログイン必須のページ */}
               <Route element={<ProtectedRoute />}>
                 <Route path="/study" element={<Study />} />
