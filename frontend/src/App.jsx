@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Study from "./pages/Study";
 import MyPage from "./pages/MyPage";
 import Usage from "./pages/Usage";
+import Review from "./pages/Review";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route element={<ProtectedRoute />}>
                 <Route path="/study" element={<Study />} />
                 <Route path="/mypage" element={<MyPage />} />
+                <Route path="/review" element={<Review />} />
               </Route>
             </Routes>
           </main>

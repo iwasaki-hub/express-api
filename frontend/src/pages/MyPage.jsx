@@ -61,6 +61,15 @@ function MyPage() {
     0,
   );
 
+  const reviewQuestions = history.flatMap((session) =>
+    Array.isArray(session.reviewQuestions)
+      ? session.reviewQuestions.filter(
+          (question) =>
+            question && ["incorrect", "skipped"].includes(question.status),
+        )
+      : [],
+  );
+
   const accuracy =
     totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
 
@@ -126,6 +135,22 @@ function MyPage() {
             <span>スキップ</span>
             <strong>{isLoading ? "—" : `${totalSkipped}問`}</strong>
           </div>
+        </section>
+
+        <section className="mypage-breakdown">
+          <h2>復習</h2>
+          <p>間違えた問題やスキップした問題を、もう一度解いてみましょう。</p>
+
+          <div className="mypage-breakdown-row">
+            <span>復習できる問題</span>
+            <strong>{isLoading ? "—" : `${reviewQuestions.length}問`}</strong>
+          </div>
+
+          {!isLoading && !error && reviewQuestions.length > 0 && (
+            <Link to="/review" className="mypage-primary-button">
+              復習する
+            </Link>
+          )}
         </section>
 
         <section className="mypage-history">

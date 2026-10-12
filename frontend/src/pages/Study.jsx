@@ -2,89 +2,8 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import StudyResult from "../components/study/StudyResult";
 import { createStudyRecord } from "../api/studyRecordApi";
+import { questions } from "../data/questions";
 import "./Study.css";
-
-const questions = [
-  {
-    question: "商品10,000円を現金で仕入れた。",
-    debit: "仕入",
-    credit: "現金",
-    amount: 10000,
-    explanation:
-      "商品を仕入れたときは「仕入」が増加するため借方、現金が減少するため貸方に記入します。",
-  },
-  {
-    question: "商品20,000円を現金で販売した。",
-    debit: "現金",
-    credit: "売上",
-    amount: 20000,
-    explanation:
-      "現金を受け取ったので借方は「現金」、商品を販売して収益が発生したので貸方は「売上」です。",
-  },
-  {
-    question: "事務用品3,000円を現金で購入した。",
-    debit: "消耗品費",
-    credit: "現金",
-    amount: 3000,
-    explanation:
-      "事務用品の購入は費用の発生なので借方に「消耗品費」、現金の減少は貸方に記入します。",
-  },
-  {
-    question: "取引先に商品15,000円を掛けで販売した。",
-    debit: "売掛金",
-    credit: "売上",
-    amount: 15000,
-    explanation:
-      "代金を後日受け取る権利である「売掛金」が増加するため借方、売上は貸方です。",
-  },
-  {
-    question: "商品8,000円を掛けで仕入れた。",
-    debit: "仕入",
-    credit: "買掛金",
-    amount: 8000,
-    explanation:
-      "仕入は費用なので借方、後日支払う義務である「買掛金」は貸方に記入します。",
-  },
-  {
-    question: "売掛金12,000円を現金で回収した。",
-    debit: "現金",
-    credit: "売掛金",
-    amount: 12000,
-    explanation: "現金が増えるため借方、売掛金という債権が減るため貸方です。",
-  },
-  {
-    question: "従業員の給料25,000円を現金で支払った。",
-    debit: "給料",
-    credit: "現金",
-    amount: 25000,
-    explanation:
-      "給料は費用の発生なので借方、支払った現金は減少するため貸方です。",
-  },
-  {
-    question: "銀行から現金50,000円を借り入れた。",
-    debit: "現金",
-    credit: "借入金",
-    amount: 50000,
-    explanation:
-      "現金が増えるため借方、将来返済する義務である借入金が増えるため貸方です。",
-  },
-  {
-    question: "備品30,000円を現金で購入した。",
-    debit: "備品",
-    credit: "現金",
-    amount: 30000,
-    explanation:
-      "備品という資産が増えるため借方、現金という資産が減るため貸方です。",
-  },
-  {
-    question: "株主から出資を受け、現金100,000円を受け取った。",
-    debit: "現金",
-    credit: "資本金",
-    amount: 100000,
-    explanation:
-      "現金が増えるため借方、出資によって資本金が増えるため貸方です。",
-  },
-];
 
 const accounts = [
   "現金",
@@ -176,10 +95,17 @@ function Study() {
     } else {
       setIncorrectCount((count) => count + 1);
 
-      setReviewQuestions((previous) => [
-        ...previous,
+      setReviewQuestions((prev) => [
+        ...prev,
         {
-          ...currentQuestion,
+          questionId: currentQuestion.id,
+          category: currentQuestion.category,
+          difficulty: currentQuestion.difficulty,
+          question: currentQuestion.question,
+          debit: currentQuestion.debit,
+          credit: currentQuestion.credit,
+          amount: currentQuestion.amount,
+          explanation: currentQuestion.explanation,
           status: "incorrect",
         },
       ]);
@@ -200,10 +126,17 @@ function Study() {
 
     setSkippedCount((count) => count + 1);
 
-    setReviewQuestions((previous) => [
-      ...previous,
+    setReviewQuestions((prev) => [
+      ...prev,
       {
-        ...currentQuestion,
+        questionId: currentQuestion.id,
+        category: currentQuestion.category,
+        difficulty: currentQuestion.difficulty,
+        question: currentQuestion.question,
+        debit: currentQuestion.debit,
+        credit: currentQuestion.credit,
+        amount: currentQuestion.amount,
+        explanation: currentQuestion.explanation,
         status: "skipped",
       },
     ]);
